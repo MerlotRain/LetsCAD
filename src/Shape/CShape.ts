@@ -1,5 +1,3 @@
-///<reference path="CVector.ts" />
-///<reference path="CPoint.ts" />
 ///<reference path="CBox.ts" />
 
 namespace Shape {

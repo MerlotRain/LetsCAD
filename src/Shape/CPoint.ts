@@ -1,4 +1,6 @@
+///<reference path="CShape.ts" />
 ///<reference path="CVector.ts" />
+///<reference path="CBox.ts" />
 
 namespace Shape {
 	export class CPoint extends CShape {
