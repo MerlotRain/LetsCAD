@@ -1,16 +1,14 @@
-///<reference path="CVector.ts" />
+import { CVector } from "./CVector";
 
-namespace Shape {
-	export class CBox {
-		c1: CVector;
-		c2: CVector;
-		constructor(c1: CVector, c2: CVector) {
-			this.c1 = c1;
-			this.c2 = c2;
-		}
+export class CBox {
+	c1: CVector;
+	c2: CVector;
+	constructor(c1: CVector, c2: CVector) {
+		this.c1 = c1;
+		this.c2 = c2;
+	}
 
-		isValid(): boolean {
-			return true;
-		}
+	isValid(): boolean {
+		return true;
 	}
 }

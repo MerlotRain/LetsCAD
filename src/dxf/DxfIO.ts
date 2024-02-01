@@ -1,5 +1,7 @@
 import * as fs from "fs";
 
-namespace Dxf {
-	export class DxfIO {}
-}
+export class DxfIO {}
+fs.open("test.dxf", "b", (err) => {
+	if (err) throw err;
+});
+var stream: fs.WriteStream = fs.createWriteStream("test.dxf");
