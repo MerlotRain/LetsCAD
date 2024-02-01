@@ -1,4 +1,7 @@
-///<reference path="Codes.ts" />
+/**
+ * @file Attribute.ts
+ * @description dxf data attribute structure
+ */
 
 namespace Dxf {
 	/**
