@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { Version } from "./Codes";
 import { DL_Attributes } from "./Attributes";
 
-export abstract class DL_Writer {
+export class DL_Writer {
 	private stream: fs.WriteStream;
 	private version: Version;
 	private m_handle: number;
@@ -213,6 +213,7 @@ export abstract class DL_Writer {
 	}
 	/**
 	 * Appid (must be in the TABLES section APPID).
+	 * @param h
 	 */
 	tableAppidEntry(h: number = 0) {
 		this.dxfString(0, "LAYER");
@@ -226,16 +227,103 @@ export abstract class DL_Writer {
 			this.dxfString(100, "AcDbRegAppTableRecord");
 		}
 	}
+	/**
+	 * Block (must be in the TABLES section BLOCK).
+	 * @param h
+	 */
+	sectionBlockEntry(h: number = 0) {
+		this.dxfString(0, "BLOCK");
+		if (this.version >= Version.AC1015) {
+			if (h == 0) {
+				this.handle();
+			} else {
+				this.dxfHex(5, h);
+			}
+
+			this.dxfString(100, "AcDbEntity");
+			if (h == 0x1c) {
+				this.dxfInt(67, 1);
+			}
+			this.dxfString(8, "0");
+			this.dxfString(100, "AcDbBlockBegin");
+		}
+	}
+	/**
+	 * End of Block (must be in the section BLOCKS).
+	 * @param h
+	 */
+	sectionBlockEntryEnd(h: number = 0) {
+		this.dxfString(0, "ENDBLK");
+		if (this.version >= Version.AC1015) {
+			if (h == 0) {
+				this.handle();
+			} else {
+				this.dxfHex(5, h);
+			}
+			this.dxfString(100, "AcDbEntity");
+			if (h == 0x1d) {
+				this.dxfInt(67, 1);
+			}
+			this.dxfString(8, "0");
+			this.dxfString(100, "AcDbBlockEnd");
+		}
+	}
+
+	color(col: number = 256) {
+		this.dxfInt(62, col);
+	}
+	linetype(lt: string) {
+		this.dxfString(6, lt);
+	}
+	linetypeScale(scale: number) {
+		this.dxfReal(48, scale);
+	}
+	lineWeight(lw: number) {
+		this.dxfInt(370, lw);
+	}
+
+	coord(gc: number, x: number, y: number, z: number = 0) {
+		this.dxfReal(gc, x);
+		this.dxfReal(gc + 10, y);
+		this.dxfReal(gc + 20, z);
+	}
 
 	handle(gc: number = 5): number {
 		this.dxfHex(gc, this.m_handle);
 		return this.m_handle++;
 	}
+	getNextHandle(): number {
+		return this.m_handle;
+	}
 
 	/**
 	 * Write real number to dxf file
 	 */
-	dxfReal(gc: number, value: number): void {}
+	dxfReal(gc: number, value: number): void {
+		let str: string;
+		if (this.version == Version.AC1009_MIN) {
+			str = value.toFixed(6);
+		} else {
+			str = value.toFixed(16);
+		}
+		// fix for german locale:
+		str = str.replace(",", ".");
+
+		// cut away those zeros at the end:
+		let dot: boolean = false;
+		let end: number = -1;
+		for (let i: number = 0; i < str.length; ++i) {
+			if (str.at(i) == ".") {
+				dot = true;
+				end = i + 2;
+				continue;
+			} else if (dot && str.at(i) != "0") {
+				end = i + 1;
+			}
+		}
+		this.dxfString(gc, str);
+		this.stream.end();
+	}
 	dxfInt(gc: number, value: number): void {}
 	dxfBoolean(gc: number, value: boolean): void {}
 	dxfHex(gc: number, value: number): void {}
