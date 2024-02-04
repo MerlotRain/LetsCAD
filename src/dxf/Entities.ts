@@ -1678,3 +1678,25 @@ export class DL_DictionaryEntryData {
 		this.handle = handle;
 	}
 }
+
+
+/**
+ * Extrusion direction.
+ */
+export class DL_Extrusion {
+	/**
+	 * Distance of the entities XY plane from the origin of the
+	 * world coordinate system
+	 */
+	elevation: number;
+	/**
+	 * Vector of axis along which the entity shall be extruded
+	 * this is also the Z axis of the Entity coordinate system
+	 */
+	direction: Array<number>;
+
+	constructor(elevation: number, direction: Array<number>) {
+		this.elevation = elevation;
+		this.direction = direction;
+	}
+}

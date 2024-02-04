@@ -322,10 +322,19 @@ export class DL_Writer {
 			}
 		}
 		this.dxfString(gc, str);
-		this.stream.end();
 	}
-	dxfInt(gc: number, value: number): void {}
-	dxfBoolean(gc: number, value: boolean): void {}
-	dxfHex(gc: number, value: number): void {}
-	dxfString(gc: number, value: string): void {}
+	dxfInt(gc: number, value: number): void {
+		let str: string = gc < 10 ? "  " : gc < 100 ? " " : "";
+		this.stream.write(`{str}{gc}\n{value}\n`);
+	}
+	dxfBoolean(gc: number, value: boolean): void {
+		this.dxfInt(gc, value ? 1 : 0);
+	}
+	dxfHex(gc: number, value: number): void {
+		this.dxfString(gc, value.toString(16));
+	}
+	dxfString(gc: number, value: string): void {
+		let str = gc < 10 ? "  " : gc < 100 ? " " : "";
+		this.stream.write(`{str}{gc}\n{value}\n`);
+	}
 }
