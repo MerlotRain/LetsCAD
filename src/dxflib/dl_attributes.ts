@@ -22,13 +22,7 @@ export class DL_Attributes {
 	private handle: number;
 	private inPaperSpace: boolean;
 
-	constructor(
-		layer: string,
-		color: number,
-		width: number,
-		lineType: string,
-		lineTypeScale: number,
-	) {
+	constructor(layer: string, color: number, width: number, lineType: string, lineTypeScale: number) {
 		this.layer = layer;
 		this.color = color;
 		this.color24 = -1;

@@ -35,13 +35,7 @@ export class DL_BlockData {
 	/** Z Coordinate of base point. */
 	bpz: number;
 
-	constructor(
-		name: string,
-		flags: number,
-		bpx: number,
-		bpy: number,
-		bpz: number,
-	) {
+	constructor(name: string, flags: number, bpx: number, bpy: number, bpz: number) {
 		this.name = name;
 		this.flags = flags;
 		this.bpx = bpx;
@@ -66,14 +60,7 @@ export class DL_LineTypeData {
 	patternLength: number;
 	pattern: number[];
 
-	constructor(
-		name: string,
-		description: string,
-		flags: number,
-		numberOfDashes: number,
-		patternLength: number,
-		pattern?: number[],
-	) {
+	constructor(name: string, description: string, flags: number, numberOfDashes: number, patternLength: number, pattern?: number[]) {
 		this.name = name;
 		this.description = description;
 		this.flags = flags;
@@ -173,14 +160,7 @@ export class DL_LineData {
 	/*! Z End coordinate of the point. */
 	z2: number;
 
-	constructor(
-		x1: number,
-		y1: number,
-		z1: number,
-		x2: number,
-		y2: number,
-		z2: number,
-	) {
+	constructor(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number) {
 		this.x1 = x1;
 		this.y1 = y1;
 		this.z1 = z1;
@@ -208,14 +188,7 @@ export class DL_XLineData {
 	/*! Z direction vector. */
 	dz: number;
 
-	constructor(
-		bx: number,
-		by: number,
-		bz: number,
-		dx: number,
-		dy: number,
-		dz: number,
-	) {
+	constructor(bx: number, by: number, bz: number, dx: number, dy: number, dz: number) {
 		this.bx = bx;
 		this.by = by;
 		this.bz = bz;
@@ -243,14 +216,7 @@ export class DL_RayData {
 	/*! Z direction vector. */
 	dz: number;
 
-	constructor(
-		bx: number,
-		by: number,
-		bz: number,
-		dx: number,
-		dy: number,
-		dz: number,
-	) {
+	constructor(bx: number, by: number, bz: number, dx: number, dy: number, dz: number) {
 		this.bx = bx;
 		this.by = by;
 		this.bz = bz;
@@ -278,14 +244,7 @@ export class DL_ArcData {
 	/*! EndAngle of arc in degrees. */
 	angle2: number;
 
-	constructor(
-		cx: number,
-		cy: number,
-		cz: number,
-		radius: number,
-		angle1: number,
-		angle2: number,
-	) {
+	constructor(cx: number, cy: number, cz: number, radius: number, angle1: number, angle2: number) {
 		this.cx = cx;
 		this.cy = cy;
 		this.cz = cz;
@@ -336,13 +295,7 @@ export class DL_PolylineData {
 	/*! Flags */
 	flags: number;
 
-	constructor(
-		size: number,
-		m: number,
-		n: number,
-		flags: number,
-		elevation: number = 0.0,
-	) {
+	constructor(size: number, m: number, n: number, flags: number, elevation: number = 0.0) {
 		this.size = size;
 		this.m = m;
 		this.n = n;
@@ -365,12 +318,7 @@ export class DL_VertexData {
 	 * (The tangent of 1/4 of the arc angle or 0 for lines) */
 	bulge: number;
 
-	constructor(
-		x: number = 0.0,
-		y: number = 0.0,
-		z: number = 0.0,
-		bulge: number = 0.0,
-	) {
+	constructor(x: number = 0.0, y: number = 0.0, z: number = 0.0, bulge: number = 0.0) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -390,12 +338,7 @@ export class DL_TraceData {
 	y: Array<number>;
 	z: Array<number>;
 
-	constructor(
-		thickness: number,
-		x: Array<number>,
-		y: Array<number>,
-		z: Array<number>,
-	) {
+	constructor(thickness: number, x: Array<number>, y: Array<number>, z: Array<number>) {
 		this.thickness = thickness;
 		this.x = x;
 		this.y = y;
@@ -429,13 +372,7 @@ export class DL_SplineData {
 	tangentEndY: number;
 	tangentEndZ: number;
 
-	constructor(
-		degree: number,
-		nKnots: number,
-		nControl: number,
-		nFit: number,
-		flags: number,
-	) {
+	constructor(degree: number, nKnots: number, nControl: number, nFit: number, flags: number) {
 		this.degree = degree;
 		this.nKnots = nKnots;
 		this.nControl = nControl;
@@ -474,12 +411,7 @@ export class DL_ControlPointData {
 	/*! Weight of control point. */
 	w: number;
 
-	constructor(
-		x: number = 0.0,
-		y: number = 0.0,
-		z: number = 0.0,
-		weight: number = 1.0,
-	) {
+	constructor(x: number = 0.0, y: number = 0.0, z: number = 0.0, weight: number = 1.0) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -530,17 +462,7 @@ export class DL_EllipseData {
 	/*! EndAngle of ellipse in rad. */
 	angle2: number;
 
-	constructor(
-		cx: number,
-		cy: number,
-		cz: number,
-		mx: number,
-		my: number,
-		mz: number,
-		ratio: number,
-		angle1: number,
-		angle2: number,
-	) {
+	constructor(cx: number, cy: number, cz: number, mx: number, my: number, mz: number, ratio: number, angle1: number, angle2: number) {
 		this.cx = cx;
 		this.cy = cy;
 		this.cz = cz;
@@ -582,20 +504,7 @@ export class DL_InsertData {
 	/*! Values for the spacing between rows. */
 	rowSp: number;
 
-	constructor(
-		name: string,
-		ipx: number,
-		ipy: number,
-		ipz: number,
-		sx: number,
-		sy: number,
-		sz: number,
-		angle: number,
-		cols: number,
-		rows: number,
-		colSp: number,
-		rowSp: number,
-	) {
+	constructor(name: string, ipx: number, ipy: number, ipz: number, sx: number, sy: number, sz: number, angle: number, cols: number, rows: number, colSp: number, rowSp: number) {
 		this.name = name;
 		this.ipx = ipx;
 		this.ipy = ipy;
@@ -907,22 +816,7 @@ export class DL_AttributeData extends DL_TextData {
 		angle: number,
 		tag: string,
 	) {
-		super(
-			ipx,
-			ipy,
-			ipz,
-			apx,
-			apy,
-			apz,
-			height,
-			xScaleFactor,
-			textGenerationFlags,
-			hJustification,
-			vJustification,
-			text,
-			style,
-			angle,
-		);
+		super(ipx, ipy, ipz, apx, apy, apz, height, xScaleFactor, textGenerationFlags, hJustification, vJustification, text, style, angle);
 		this.tag = tag;
 	}
 }
@@ -1064,14 +958,7 @@ export class DL_DimAlignedData {
 	/*! Z Coordinate of Extension point 2. */
 	epz2: number;
 
-	constructor(
-		epx1: number,
-		epy1: number,
-		epz1: number,
-		epx2: number,
-		epy2: number,
-		epz2: number,
-	) {
+	constructor(epx1: number, epy1: number, epz1: number, epx2: number, epy2: number, epz2: number) {
 		this.epx1 = epx1;
 		this.epy1 = epy1;
 		this.epz1 = epz1;
@@ -1104,16 +991,7 @@ export class DL_DimLinearData {
 	/*! Oblique angle in degrees. */
 	oblique: number;
 
-	constructor(
-		dpx1: number,
-		dpy1: number,
-		dpz1: number,
-		dpx2: number,
-		dpy2: number,
-		dpz2: number,
-		angle: number,
-		oblique: number,
-	) {
+	constructor(dpx1: number, dpy1: number, dpz1: number, dpx2: number, dpy2: number, dpz2: number, angle: number, oblique: number) {
 		this.dpx1 = dpx1;
 		this.dpy1 = dpy1;
 		this.dpz1 = dpz1;
@@ -1201,20 +1079,7 @@ export class DL_DimAngular2LData {
 	/*! Z Coordinate of definition point 4. */
 	dpz4: number;
 
-	constructor(
-		dpx1: number,
-		dpy1: number,
-		dpz1: number,
-		dpx2: number,
-		dpy2: number,
-		dpz2: number,
-		dpx3: number,
-		dpy3: number,
-		dpz3: number,
-		dpx4: number,
-		dpy4: number,
-		dpz4: number,
-	) {
+	constructor(dpx1: number, dpy1: number, dpz1: number, dpx2: number, dpy2: number, dpz2: number, dpx3: number, dpy3: number, dpz3: number, dpx4: number, dpy4: number, dpz4: number) {
 		this.dpx1 = dpx1;
 		this.dpy1 = dpy1;
 		this.dpz1 = dpz1;
@@ -1255,17 +1120,7 @@ export class DL_DimAngular3PData {
 	/*! Z Coordinate of definition point 3. */
 	dpz3: number;
 
-	constructor(
-		dpx1: number,
-		dpy1: number,
-		dpz1: number,
-		dpx2: number,
-		dpy2: number,
-		dpz2: number,
-		dpx3: number,
-		dpy3: number,
-		dpz3: number,
-	) {
+	constructor(dpx1: number, dpy1: number, dpz1: number, dpx2: number, dpy2: number, dpz2: number, dpx3: number, dpy3: number, dpz3: number) {
 		this.dpx1 = dpx1;
 		this.dpy1 = dpy1;
 		this.dpz1 = dpz1;
@@ -1299,15 +1154,7 @@ export class DL_DimOrdinateData {
 	/*! True if the dimension indicates the X-value, false for Y-value */
 	xType: boolean;
 
-	constructor(
-		dpx1: number,
-		dpy1: number,
-		dpz1: number,
-		dpx2: number,
-		dpy2: number,
-		dpz2: number,
-		xType: boolean,
-	) {
+	constructor(dpx1: number, dpy1: number, dpz1: number, dpx2: number, dpy2: number, dpz2: number, xType: boolean) {
 		this.dpx1 = dpx1;
 		this.dpy1 = dpy1;
 		this.dpz1 = dpz1;
@@ -1400,15 +1247,7 @@ export class DL_HatchData {
 	originX: number;
 	originY: number;
 
-	constructor(
-		numLoops: number,
-		solid: boolean,
-		scale: number,
-		angle: number,
-		pattern: string,
-		originX: number,
-		originY: number,
-	) {
+	constructor(numLoops: number, solid: boolean, scale: number, angle: number, pattern: string, originX: number, originY: number) {
 		this.numLoops = numLoops;
 		this.solid = solid;
 		this.scale = scale;
@@ -1678,7 +1517,6 @@ export class DL_DictionaryEntryData {
 		this.handle = handle;
 	}
 }
-
 
 /**
  * Extrusion direction.

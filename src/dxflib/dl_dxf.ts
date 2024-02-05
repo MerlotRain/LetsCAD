@@ -1,9 +1,9 @@
 import * as fs from "fs";
-import { DL_CreationInterface } from "./CreationInterface";
-import { Version } from "./Codes";
-import { DL_DimensionData, DL_HatchEdgeData } from "./Entities";
-import { DL_Attributes } from "./Attributes";
-import { DL_Writer } from "./DxfWriter";
+import { DL_CreationInterface } from "./dl_creationInterface";
+import { Version } from "./dl_codes";
+import { DL_DimensionData, DL_HatchEdgeData } from "./dl_entities";
+import { DL_Attributes } from "./dl_attributes";
+import { DL_Writer } from "./dl_writer";
 
 namespace ObjectType {
 	export let DL_UNKNOWN: 0;
@@ -151,11 +151,7 @@ export class DxfIO {
 	in(file: string, creation: DL_CreationInterface): boolean {
 		return true;
 	}
-	processDXFGroup(
-		creation: DL_CreationInterface,
-		groupCode: number,
-		groupValue: string,
-	): boolean {
+	processDXFGroup(creation: DL_CreationInterface, groupCode: number, groupValue: string): boolean {
 		return false;
 	}
 	addSetting(creation: DL_CreationInterface) {}

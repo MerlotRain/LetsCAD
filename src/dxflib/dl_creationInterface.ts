@@ -40,9 +40,9 @@ import {
 	DL_HatchEdgeData,
 	DL_DictionaryEntryData,
 	DL_Extrusion,
-} from "./Entities";
+} from "./dl_entities";
 
-import { DL_Attributes } from "./Attributes";
+import { DL_Attributes } from "./dl_attributes";
 
 export interface DL_CreationInterface {
 	/**
@@ -292,13 +292,7 @@ export interface DL_CreationInterface {
 	/**
 	 * Called for every vector variable in the DXF file (e.g. "$EXTMIN").
 	 */
-	setVariableVector(
-		key: string,
-		v1: number,
-		v2: number,
-		v3: number,
-		code: number,
-	): void;
+	setVariableVector(key: string, v1: number, v2: number, v3: number, code: number): void;
 
 	/**
 	 * Called for every string variable in the DXF file (e.g. "$ACADVER").
@@ -327,7 +321,7 @@ export interface DL_CreationInterface {
 	getAttributes(): DL_Attributes;
 
 	/** Sets the current attributes for entities. */
-	setExtrusion(dx: number, dy: number, dz:number, elevation: number): void;
+	setExtrusion(dx: number, dy: number, dz: number, elevation: number): void;
 
 	/** @return the current attributes used for new entities. */
 	getExtrusion(): DL_Extrusion;

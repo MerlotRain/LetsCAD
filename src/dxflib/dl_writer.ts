@@ -1,6 +1,6 @@
 import * as fs from "fs";
-import { Version } from "./Codes";
-import { DL_Attributes } from "./Attributes";
+import { Version } from "./dl_codes";
+import { DL_Attributes } from "./dl_attributes";
 
 export class DL_Writer {
 	private stream: fs.WriteStream;

@@ -1,22 +1,32 @@
-import { isNormal } from "../Utils";
+import { isNormal } from "../../Utils";
 
-export class CVector {
+export class RVector {
 	x: number;
 	y: number;
 	z: number;
 	valid: boolean;
 
-	constructor(x?: number, y?: number, z?: number) {
-		this.x = x || 0;
-		this.y = y || 0;
-		this.z = z || 0;
-		this.valid = true;
+	static invalid(): RVector {
+		return new RVector(0, 0, 0, false);
+	}
+	static nullVector(): RVector {
+		return new RVector(0, 0, 0, true);
+	}
+	static nanVector(): RVector {
+		return new RVector(Number.NaN, Number.NaN, Number.NaN, true);
 	}
 
-	set(vx: number, vy: number, vz?: number) {
+	constructor(x: number = 0.0, y: number = 0.0, z: number = 0.0, valid_in: boolean = true) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.valid = valid_in && isNormal(x) && isNormal(y) && isNormal(z);
+	}
+
+	set(vx: number, vy: number, vz: number = 0.0) {
 		this.x = vx;
 		this.y = vy;
-		this.z = vz || 0;
+		this.z = vz;
 		this.valid = true;
 	}
 	setPolar(radius: number, angle: number) {
@@ -36,7 +46,7 @@ export class CVector {
 		const m = this.getMagnitude2D();
 
 		if (m > 1.0e-6) {
-			let dp = CVector.getDotProduct(this, new CVector(1.0, 0.0));
+			let dp = RVector.getDotProduct(this, new RVector(1.0, 0.0));
 			if (dp / m >= 1.0) {
 				ret = 0.0;
 			} else if (dp / m < -1.0) {
@@ -64,7 +74,7 @@ export class CVector {
 		return Math.sqrt(this.x ** 2 + this.y ** 2);
 	}
 
-	static getDotProduct(v1: CVector, v2: CVector): number {
+	static getDotProduct(v1: RVector, v2: RVector): number {
 		return 0.0;
 	}
 }
