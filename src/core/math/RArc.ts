@@ -18,6 +18,30 @@ export class RArc extends RShape {
 		this.reversed = reversed ?? false;
 	}
 
+	override getShapeType(): RShapeType {
+		return RShapeType.Arc;
+	}
+	isDirected(): boolean {
+		return true;
+	}
+
+	getVectorProperties(): Array<RVector> {
+		throw new Error("Method not implemented.");
+	}
+	getDoubleProperties(): Array<number> {
+		throw new Error("Method not implemented.");
+	}
+	getBoolProperties(): Array<boolean> {
+		throw new Error("Method not implemented.");
+	}
+
+	isValid(): boolean {
+		return false;
+	}
+    isFullCircle(tolerance: number = Number.EPSILON) {
+        return false;
+    }
+
 	getBoundingBox(): RBox {
 		throw new Error("Method not implemented.");
 	}
