@@ -20,7 +20,7 @@ export class CPoint extends RShape {
 		return new RBox(this.position, this.position);
 	}
 	setZ(z: number): void {
-		this.position.z = z;
+		this.position.Z = z;
 	}
 	getLength(): number {
 		return 0.0;
@@ -59,6 +59,12 @@ export class CPoint extends RShape {
 		return false;
 	}
 	mirror(axis: RLine): boolean {
+		return false;
+	}
+	flipHorizontal(): boolean {
+		return false;
+	}
+	flipVertical(): boolean {
 		return false;
 	}
 }

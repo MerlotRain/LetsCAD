@@ -1,10 +1,11 @@
-import { isNormal } from "../../Utils";
+import { isNormal, isSane } from "../../Utils";
+import { RBox } from "./RBox";
 
 export class RVector {
-	x: number;
-	y: number;
-	z: number;
-	valid: boolean;
+	private x: number;
+	private y: number;
+	private z: number;
+	private valid: boolean;
 
 	static invalid(): RVector {
 		return new RVector(0, 0, 0, false);
@@ -34,6 +35,45 @@ export class RVector {
 		this.y = radius * Math.sin(angle);
 		this.z = 0;
 		this.valid = isNormal(radius) && isNormal(angle);
+	}
+	get2D(): RVector {
+		return new RVector(this.x, this.y);
+	}
+
+	isValid(): boolean {
+		return this.valid;
+	}
+	isZero(): boolean {
+		return Math.abs(this.x) < 1e-9 && Math.abs(this.y) < 1e-9 && Math.abs(this.z) < 1e-9;
+	}
+	isSane(): boolean {
+		return this.isValid() && isSane(this.x) && isSane(this.y) && isSane(this.z);
+	}
+	isNaN(): boolean {
+		return Number.isNaN(this.x) || Number.isNaN(this.y) || Number.isNaN(this.z);
+	}
+
+	isInside(b: RBox): boolean {
+		return false;
+	}
+
+	get X() {
+		return this.x;
+	}
+	set X(x: number) {
+		this.x = x;
+	}
+	get Y() {
+		return this.y;
+	}
+	set Y(y: number) {
+		this.y = y;
+	}
+	get Z() {
+		return this.z;
+	}
+	set Z(z: number) {
+		this.z = z;
 	}
 
 	setAngle(a: number) {
@@ -76,5 +116,11 @@ export class RVector {
 
 	static getDotProduct(v1: RVector, v2: RVector): number {
 		return 0.0;
+	}
+	static getMinimum(v1: RVector, v2: RVector): RVector {
+		return new RVector(Math.min(v1.X, v2.X), Math.min(v1.Y, v2.Y), Math.min(v1.Z, v2.Z), v1.valid && v2.valid);
+	}
+	static getMaximum(v1: RVector, v2: RVector): RVector {
+		return new RVector(Math.max(v1.X, v2.X), Math.max(v1.Y, v2.Y), Math.max(v1.Z, v2.Z), v1.valid && v2.valid);
 	}
 }

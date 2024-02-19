@@ -11,4 +11,11 @@ export class RBox {
 	isValid(): boolean {
 		return true;
 	}
+
+	getMinimum(): RVector {
+		return RVector.getMinimum(this.c1, this.c2);
+	}
+	getMaximum(): RVector {
+		return RVector.getMaximum(this.c1, this.c2);
+	}
 }
